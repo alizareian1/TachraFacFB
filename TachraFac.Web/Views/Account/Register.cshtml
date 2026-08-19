@@ -1,0 +1,142 @@
+
+﻿@using TachraFac.Core.DTOs
+@model RegisterViewModel
+
+
+
+@{
+	ViewData["Title"] = "ثبت نام";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 col-md-7 col-lg-5 signup-login-box">
+            <!-- start signup & login box -->
+            <img src="assets/images/logo.png">
+            <form asp-action="register" method="post">
+
+                <div class="input-group signup-login-form text">
+                    <!-- start username input -->
+                    <input asp-for="UserName" type="text" class="form-control form-control-lg signup-login-input" placeholder="نام کاربری ">
+                </div><!-- end username input -->
+
+                <div class="input-group signup-login-form text">
+                    <!-- start username input -->
+                    <input  asp-for="Name"  type="text" class="form-control form-control-lg signup-login-input" placeholder="نام و نام خانوادگی ">
+                </div><!-- end username input -->
+
+                <div class="input-group signup-login-form email-box">
+                    <!-- start email input -->
+                    <input asp-for="Email" type="text" class="form-control form-control-lg signup-login-input" placeholder="ایمیل ">
+                </div><!-- end email input -->
+
+                <div class="input-group signup-login-form address-box">
+                    <!-- start address input -->
+                    <input asp-for="Address" type="text" class="form-control form-control-lg signup-login-input" placeholder="آدرس ">
+                </div><!-- end address input -->
+
+                <div class="input-group signup-login-form ">
+                    <!-- start mobile postalCod input -->
+                    <input asp-for="PostalCode" type="tel" class="form-control form-control-lg signup-login-input" placeholder="کد پستی">
+                </div><!-- end mobile postalCod input -->
+
+                <div class="input-group signup-login-form mobile-number">
+                    <!-- start mobile number input -->
+                    <input asp-for="Mobile" type="tel" class="form-control form-control-lg signup-login-input" placeholder="شماره موبایل">
+                </div><!-- end mobile number input -->
+
+                <div class="input-group signup-login-form password">
+                    <!-- start password input -->
+                    <input asp-for="Password" type="password" class="form-control form-control-lg signup-login-input" placeholder="رمز عبور ">
+                </div><!-- end password input -->
+
+                <div class="input-group signup-login-form password">
+                    <!-- start Repassword input -->
+                    <input asp-for="RePassword" type="password" class="form-control form-control-lg signup-login-input" placeholder="رمز عبور ">
+                </div><!-- end Repassword input -->
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="signup-login-form">
+                    <div class="form-check text-center">
+                        <!-- start input check -->
+                        <input class="form-check-input form-check-input-custom" type="checkbox" id="customCheck" checked>
+                        <label class="form-check-label line-height" for="customCheck">
+                            <a href="#" class="underline">حریم خصوصی</a> و <a href="#" class="underline">شرایط و قوانین</a> استفاده از سرویس های سایت  تچرا را مطالعه نموده و با کلیه موارد آن موافقم.
+                        </label>
+                    </div><!-- end input check -->
+                </div>
+
+                <button type="submit" class="btn btn-danger d-block font-12 mx-auto signup-btn mb-4">
+                    <!-- signup btn -->
+                    ثبت نام
+                </button>
+
+                <p>قبلا در نیک کالا ثبت‌ نام کرده‌اید؟ <a href="login.html" class="underline">وارد شویــد</a></p>
+
+            </form>
+        </div><!-- end signup & login box -->
+    </div>
+</div>
+
+
+@* <nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+        <li class="breadcrumb-item active" aria-current="page">عضویت در سایت</li>
+    </ul>
+</nav> *@
+@* @{
+	ViewBag.Name = "عضویت در سایت"; 
+} *@
+
+<div class="owl-carousel-item position-relative">
+    <img class="img-fluid" src="~/img/carousel-123.jpg" alt="Freshly Baked Bread">
+    <div class="owl-carousel-inner">
+        <div class="container">
+            <div class="row justify-content-start">
+                @* <div class="col-lg-8">
+                    <p class="text-primary text-uppercase fw-bold mb-2">// Freshly Baked Every Day</p>
+                    <h1 class="display-1 text-light mb-4 animated slideInDown">Taste the Difference</h1>
+                    <p class="text-light fs-5 mb-4 pb-3">Discover the perfect blend of tradition and flavor with our artisan baked goods.</p>
+                    <a href="#products" class="btn btn-primary rounded-pill py-3 px-5">Explore Now</a>
+                </div> *@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Register Form -->
+<div class="register-containerr">
+    <h2>ثبت نام</h2>
+
+    <form asp-action="Register" method="post">
+        <div class="input-group">
+            <label>نام کاربری</label>
+            <input asp-for="UserName" type="text" placeholder="نام کاربری ">
+        </div>
+
+
+        <div class="input-group">
+            <label>ایمیل</label>
+            <input asp-for="Email" type="email" placeholder="ایمیل">
+        </div>
+
+        <div class="input-group">
+            <label>رمز عبور</label>
+            <input asp-for="Password" type="password" placeholder="رمز عبور">
+         </div>
+           
+
+        
+        <div class="input-group">
+            <label>تکرار رمز عبور</label>
+            <input asp-for="RePassword"  type="password" placeholder="تکرار رمز عبور">
+        </div>
+        
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <button type="submit" class="btn btn-success" value="ثبت نام">ثبت نام</button>
+    </form>
+
+    <p class="login-linkk">حساب دارید؟ <a href="/Login">ورود</a></p>
+</div>

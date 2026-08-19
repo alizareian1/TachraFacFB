@@ -1,0 +1,125 @@
+﻿@page "{id}"
+@using TachraFac.Datalayer.Entities.User
+@model TachraFac.Web.Pages.Admin.Users.EditUserModel
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    List<Role> Roles = ViewData["Roles"] as List<Role>;
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">ویرایش کاربر </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="@Model.editUserViewModel.userId" />
+            <div class="col-md-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        اطلاعات کاربر
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label>نام کاربری</label>
+                            <label class="text-success">@Model.editUserViewModel.UserName</label>
+                        </div>
+                        <div class="form-group">
+                            <label>نام و نام خانوادگی</label>
+                            <input type="text" asp-for="editUserViewModel.Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>ایمیل</label>
+                            <input type="email" asp-for="editUserViewModel.Email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>کلمه عبور</label>
+                            <input type="text" asp-for="editUserViewModel.Password" class="form-control">
+                            <p class="help-block">در صورت وارد کذدن کلمه عبور کلمه عبور کاربر تغییر خواهد کرد</p>
+                        </div>
+                        <div class="form-group">
+                            <label>تلفن همراه</label>
+                            <input type="number" asp-for="editUserViewModel.Mobile" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>آدرس</label>
+                            <input type="text" asp-for="editUserViewModel.Address" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>کدپستی</label>
+                            <input type="number" asp-for="editUserViewModel.PostalCode" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <input type="submit" value="ویرایش اطلاعات" class="btn btn-success" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        تصویر پروفایل
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <img id="imgAvatar" src="~/assets/AvatarUser/@Model.editUserViewModel.AvatarName" class="profile-avatar img-thumbnail">
+                        <div class="form-group">
+                            <label>انتخاب تصویر</label>
+                            <input type="file" asp-for="editUserViewModel.userAvatar" />
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        نقش های کاربر
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="form-group">
+                            @foreach (var item in Roles)
+                            {
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"  name="SelectedRoles" value="@item.RoleId" @((Model.editUserViewModel.UserRoles.Any(r=>r == item.RoleId)?"checked":""))>@item.RoleTitle
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+@* @section scripts
+{
+    <script>
+        function readURL(input){
+            if(input.files && input.files[0]{
+                var reader = new FileReader();
+
+                reader.onload = function(e){
+                    $('#imgAvatar').attr('src',e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#EditUserViewModel_userAvatar").change(function(){
+            readURL(this);       
+        });
+    </script>
+} *@

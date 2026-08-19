@@ -1,0 +1,69 @@
+
+﻿@using TachraFac.Core.DTOs
+@model LoginViewModel
+
+
+
+
+@{
+    ViewData["Title"] = "ورود به سایت";
+}
+
+
+
+
+<div class="register-container">
+
+    @if(ViewBag.IsSuccess != null){
+        <div class="alert alert-success">
+            <p class="help-block">ورود با موفقیت انجام شد</p>
+        </div>
+        <script>
+            var delay = 3000;
+
+            setTimeout(function(){window.location = "https://localhost:7270/UserPanel";}, delay);
+        </script>
+    }
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 col-md-7 col-lg-5 signup-login-box">
+            <!-- start signup & login box -->
+            <img src="assets/images/logo.png">
+            <form asp-action="Login" method="post">
+
+                <div class="input-group signup-login-form mobile-number">
+                    <!-- start mobile number input -->
+                    <input asp-for="UserName" type="text" class="form-control form-control-lg signup-login-input" placeholder="نام کاربری ">
+                </div><!-- end mobile number input -->
+                <span asp-validation-for="UserName"></span>
+
+                <div class="input-group signup-login-form password">
+                    <!-- start password input -->
+                    <input asp-for="Password" type="password" class="form-control form-control-lg signup-login-input" placeholder="رمز عبور">
+                </div><!-- end password input -->
+                <span asp-validation-for="Password"></span>
+
+                <div class="signup-login-form">
+                    <div class="form-check">
+                        <!-- start input check -->
+                        <input asp-for="RemmemerMe" class="form-check-input form-check-input-custom" type="checkbox" id="customCheck" checked>
+                        <label class="form-check-label line-height ps-1" for="customCheck">
+                            مرا به خاطر داشته باش
+                        </label>
+                    </div><!-- end input check -->
+                </div>
+                
+                
+                <button type="submit" class="btn btn-danger d-block font-12 mx-auto mb-4 login-btn">
+                    <!-- login btn -->
+                    ورود
+                </button>
+
+                <p>کاربر جدید هستید؟ <a href="/Register" class="underline">ثبت‌ نام در نیک کالا </a></p>
+                <p>رمز عبور خود را فراموش کرده اید ؟<a href="/ForgotPassword" class="underline"> بازیابی رمز عبور </a></p>
+
+            </form>
+        </div><!-- end signup & login box -->
+    </div>
+</div>

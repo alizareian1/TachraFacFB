@@ -1,0 +1,46 @@
+﻿@page "{id}"
+@using TachraFac.Datalayer.Entities.Product
+@model TachraFac.Web.Pages.Admin.Product.EditMatreialModel
+@{
+	ViewData["Title"] = "ویرایش مواد اولیه";
+}
+
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">ویرایش مواد اولیه </h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+
+	<div class="row">
+		<form method="post" enctype="multipart/form-data">
+			<div class="col-md-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						ویرایش
+					</div>
+					<!-- /.panel-heading -->
+					<div class="panel-body">
+						<input type="hidden" asp-for="rawMaterial.MaterialId" />
+
+						<div class="form-group">
+							<label>عنوان ماده اولیه</label>
+							<input type="text" asp-for="rawMaterial.MaterialTitle" class="form-control">
+							<span asp-validation-for="rawMaterial.MaterialTitle" class="text-danger"></span>
+						</div>
+						
+
+						<div class="col-md-4">
+							<p>
+								<input type="submit" value="ذخیره" class="btn btn-success" />
+							</p>
+						</div>
+					</div>
+					<!-- /.panel-body -->
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+			

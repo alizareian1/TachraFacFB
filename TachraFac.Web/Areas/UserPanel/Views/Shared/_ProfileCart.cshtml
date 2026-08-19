@@ -1,0 +1,46 @@
+﻿@using TachraFac.Core.DTOs
+@using TachraFac.Core.Services.Interfaces
+@inject IUserService _userService
+
+@{
+    InformationUserViewModel Model = _userService.GetUserInformation(User.Identity.Name);
+}
+
+<div class="col-lg-4 col-md-5">
+
+    <div class="card shadow-sm h-100">
+
+        <div class="card-header bg-primary text-white text-center">
+            <h5 class="mb-0">پروفایل کاربری</h5>
+        </div>
+
+        <div class="card-body text-center">
+
+            <!-- Profile Image -->
+            <img src="/UserAvatar/@Model.UserAvatar"
+                 class="rounded-circle mb-3"
+                 style="width: 130px; height: 130px; object-fit: cover;" />
+
+            <h5 class="mb-3">@Model.UserName</h5>
+
+            <hr />
+
+            <div class="text-start">
+
+                <p><strong>ایمیل:</strong> @Model.Email</p>
+                <p><strong>شماره موبایل:</strong> @Model.PhoneNumber</p>
+                <p><strong>آدرس:</strong> @Model.Address</p>
+                <p><strong>کد پستی:</strong> @Model.PostalCode</p>
+                <p><strong>تاریخ عضویت:</strong> @Model.RegisterDate.ToString("yyyy/MM/dd")</p>
+
+            </div>
+
+            <a href="/UserPanel/Home/EditProfile" class="btn btn-success w-100 mt-3">
+                ویرایش اطلاعات
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

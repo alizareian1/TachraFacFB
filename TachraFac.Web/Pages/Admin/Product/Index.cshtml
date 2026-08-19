@@ -1,0 +1,77 @@
+﻿@page
+@model TachraFac.Web.Pages.Admin.Product.IndexModel
+@{
+	ViewData["Title"] = "محصولات";
+}
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">لیست محصولات</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					اطلاعات محصولات
+				</div>
+				<div class="panel-body">
+					<div style="margin-top: 15px; margin-bottom: 15px;">
+						<a class="btn btn-success" asp-page="AddProduct">افزودن محصول</a>
+						<span style="margin-right: 10px;"></span>
+						<a class="btn btn-success" asp-page="AddMatreial">افزودن مواد غذایی</a>
+					</div>
+
+					@if (Model.Products != null && Model.Products.Any())
+					{
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>عکس</th>
+									<th>نام محصول</th>
+									<th>توضیحات</th>
+									<th>وزن</th>
+									<th>قیمت</th>
+									<th>تاریخ انقضا</th>
+									<th>تعداد لایک</th>
+									<th>عملیات</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model.Products)
+								{
+									<tr>
+										<td>
+											@if (item.Photos != null && item.Photos.Any())
+											{
+												<img src="@item.Photos.First().PhotoProduct" alt="@item.ProductTitle" style="width:60px; height:60px; object-fit:cover;" />
+											}
+											else
+											{
+												<span class="text-muted">بدون عکس</span>
+											}
+										</td>
+										<td>@item.ProductTitle</td>
+										<td>@item.Discription</td>
+										<td>@item.Weight</td>
+										<td>@item.price.ToString("N0") تومان</td>
+										<td>@item.ExpirationDate</td>
+										<td>@item.LikeCount</td>
+										<td>
+											<a class="btn btn-sm btn-primary" asp-page="EditProduct" asp-route-id="@item.ProductId">ویرایش</a>
+											<a class="btn btn-sm btn-danger" asp-page="DeleteProduct" asp-route-id="@item.ProductId">حذف</a>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					}
+					else
+					{
+						<p class="text-muted">هیچ محصولی ثبت نشده است.</p>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

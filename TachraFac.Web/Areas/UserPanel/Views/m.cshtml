@@ -1,0 +1,29 @@
+﻿@using TachraFac.Core.DTOs
+@model EditProfileViewModel
+<div class="container mt-4">
+	<div class="row justify-content-center">
+		<div class="col-lg-6 col-md-8">
+			<div class="card shadow-sm">
+				<div class="card-header bg-primary text-white text-center">
+					<h5 class="mb-0">ویرایش اطلاعات کاربری</h5> 
+					</div>
+					<div class="card-body">
+						<form asp-action="EditProfile" method="post">
+							<!-- Email --> 
+							<div class="form-group mb-3"> 
+								<label>ایمیل</label>
+								<input asp-for="Email" class="form-control" placeholder="ایمیل خود را وارد کنید" /> 
+								<span asp-validation-for="Email" class="text-danger"></span>
+							</div> <!-- Phone --> <div class="form-group mb-3"> 
+								<label>شماره موبایل</label> 
+								<input asp-for="PhoneNumber" class="form-control" placeholder="شماره موبایل خود را وارد کنید" /> 
+								<span asp-validation-for="PhoneNumber" class="text-danger"></span> 
+							</div> <!-- Postal Code --> 
+
+							<div class="form-group mb-3">
+								<label>کد پستی</label>
+								<input asp-for="PostalCode" class="form-control" placeholder="کد پستی خود را وارد کنید" />
+								<span asp-validation-for="PostalCode" class="text-danger">
+
+								</span> </div> <!-- Address -->
+								<div class="form-group mb-3"> <label>آدرس</label> <textarea asp-for="Address" class="form-control" rows="3" placeholder="آدرس خود را وارد کنید"></textarea> <span asp-validation-for="Address" class="text-danger"></span> </div> <button type="submit" class="btn btn-success w-100">ذخیره تغییرات</button> </form> </div> </div> </div> </div> </div>

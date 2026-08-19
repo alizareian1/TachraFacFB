@@ -1,0 +1,130 @@
+﻿@using TachraFac.Core.Convertors
+@using TachraFac.Core.DTOs
+@model CharegeWalletViewModel
+@{
+    ViewData["Title"]= "کیف پول";
+}
+
+<main>
+    <!-- start main -->
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3">
+
+                <div class="profile-card pb-0">
+                    <!-- start avatar box -->
+                    <img src="~/assets/images/avatar.jpg" class="profile-avatar img-thumbnail">
+                    <p class="font-13 text-center"> @User.Identity.Name</p>
+                    <div class="row border-top">
+                        <div class="col-6 border-end text-center">
+                            <i class="fa fa-lock font-13 text-muted my-2"></i>
+                            <a href="/UserPanel/ChangePassword" class="text-dark d-block font-12 mb-2">تغییر رمز عبور</a>
+                        </div>
+                        <div class="col-6 text-center">
+                            <i class="fas fa-sign-out-alt font-13 text-muted my-2"></i>
+                            <a href="/Logout" class="text-dark d-block font-12 mb-2">خروج از حساب</a>
+                        </div>
+                    </div>
+                </div><!-- end avatar box -->
+
+                <div class="profile-card">
+                    <!-- start sidebar menu -->
+                    <ul class="profile-sidebar">
+                        <li><a href="/UserPanel" class="text-info"><i class="far fa-user-circle align-middle me-2"></i>پروفایل</a></li>
+                        <li><a href="profile-order.html"><i class="fas fa-shopping-cart align-middle me-2"></i>همه سفارش ها</a></li>
+                        <li><a href="profile-order-return.html"><i class="fa  fa-retweet align-middle me-2"></i>درخواست مرجوعی</a></li>
+                        <li><a href="profile-fav-list.html"><i class="far fa-heart align-middle me-2"></i>لیست علاقمندی ها</a></li>
+                        <li><a href="profile-comment.html"><i class="far fa-comment align-middle me-2"></i>نظرات</a></li>
+                        <li><a href="profile-address.html"><i class="fas fa-map-marker-alt align-middle me-2"></i>آدرس ها</a></li>
+                        <li><a href="profile-info.html"><i class="far fa-address-card align-middle me-2"></i>اطلاعات حساب</a></li>
+                        <li><a href="UserPanel/Wallet"><i class="far fa-address-card align-middle me-2"></i>کیف پول</a></li>
+                    </ul>
+                </div><!-- end sidebar menu -->
+
+            </div>
+
+            <div class="col-lg-9">
+
+                <div class="profile-card personal-info">
+                    <!-- start personal info edit box -->
+                    <p class="font-13">کیف پول</p>
+                    <form asp-action="Index" method="post">
+
+                        <div class="row">
+
+                            <div class="col mb-3">
+                                <label for="code" class="form-label zmdi zmdi-balance-wallet"> افزایش اعتبار کیف پول شما  : </label>
+                                <input asp-for="Amount" type="number" class="form-control form-control-lg" id="code" value="مبلغ" placeholder="مبلغ">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 mt-2">
+                                <button type="submit" class="btn btn-success text-white font-13 float-end">شارژ کیف پول  </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div><!-- end personal info edit box -->
+
+                @{
+                    List<WalletViewModel> list = ViewBag.ListWallet as List<WalletViewModel>;
+                }
+                
+                <div class="profile-card">
+                    <!-- start recent order list -->
+                    <p class="font-13">آخرین سفارش‌ها </p>
+                    <div class="table-responsive">
+                        <table class="text-center table table-custom table-bordered font-13">
+                            <thead class="thead-custom">
+                                <tr>
+                                    <td>#</td>
+                                    <td>شماره سفارش</td>
+                                    <td>تاریخ ثبت سفارش</td>
+                                    <td>مبلغ قابل پرداخت</td>
+                                    <td>مبلغ کل</td>
+                                    <td>عملیات پرداخت</td>
+                                    <td>جزییات</td>
+                                    <td>جزییات</td>
+                                </tr>
+                            </thead>
+                            @foreach(var item in list)
+                            {
+                                <tr>
+                                    <td>1</td>
+                                    <td>@item.WalletId</td>
+                                    <td>@item.DateTime.ToShamsi()</td>
+                                    <td>@item.Discription</td>
+                                    <td class="text-success">@item.Amount.ToString("#,0 تومان")</td>
+                                    @if (item.Type == 1)
+                                    {
+                                        @if (item.IsPay)
+                                        {
+                                            <td class="text-success">پرداخت موفق</td>
+                                        }
+                                        else{
+                                            <td class="text-danger">پرداخت ناموفق</td>
+                                        }
+                                    }
+                                    else{
+                                        @if(item.IsPay){
+                                            <td class="text-success">برداشت موفق</td>
+                                        }
+                                        else{
+                                            <td class="text-danger">برداشت ناموفق</td>
+                                        }
+                                    }
+                                    
+                                    <td>@item.IsPay</td>
+                                    <td><i class="fa fa-chevron-left align-middle"></i></td>
+                                </tr>
+                            }
+                            
+                        </table>
+                    </div>
+                </div><!-- end recent order list -->
+
+        </div>
+    </div>
+</main><!-- end main -->

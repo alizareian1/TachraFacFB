@@ -1,0 +1,75 @@
+﻿@page
+@model TachraFac.Web.Pages.Admin.Product.AddProductModel
+@{
+	ViewData["Title"] = "افزودن محصول";
+}
+<div id="page-wrapper">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">افزودن محصول</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					اطلاعات محصولات
+				</div>
+				<!-- /.panel-heading -->
+				<div class="panel-body">
+					<form method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<label>نام محصول</label>
+							<input type="text" asp-for="productVM.ProductTitle" class="form-control">
+							<span asp-validation-for="productVM.ProductTitle"></span>
+						</div>
+						@* <div asp-validation-summary="All"></div> *@
+						<div class="form-group">
+							<label>توضیحات</label>
+							<input type="text" asp-for="productVM.Discription" class="form-control">
+							<span asp-validation-for="productVM.Discription"></span>
+						</div>
+						<div class="form-group">
+							<label>تاریخ انقضا</label>
+							<input type="text" asp-for="productVM.ExpirationDate" class="form-control">
+							<span asp-validation-for="productVM.ExpirationDate"></span>
+						</div>
+						<div class="form-group">
+							<label>وزن</label>
+							<input type="text" asp-for="productVM.Weight" class="form-control">
+							<span asp-validation-for="productVM.Weight"></span>
+						</div><div class="form-group">
+							<label>قیمت</label>
+							<input type="text" asp-for="productVM.Price" class="form-control">
+							<span asp-validation-for="productVM.Price"></span>
+						</div>
+
+						<div class="mb-3">
+							<label class="form-label d-block">مواد اولیه:</label>
+							<!-- در پروژه واقعی این لیست رو از دیتابیس در OnGet پر کن -->
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" name="productVM.MaterialIds" value="1">
+								<label class="form-check-label">ماده اول</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" name="productVM.MaterialIds" value="2">
+								<label class="form-check-label">ماده دوم</label>
+							</div>
+							
+
+						</div>
+						<!-- بخش آپلود فایل -->
+						<div class="mb-4">
+							<label asp-for="productVM.PhotoPaths" class="form-label"></label>
+							<input asp-for="productVM.PhotoPaths" type="file" class="form-control" multiple />
+							<small class="text-muted">می‌توانید چندین عکس را همزمان انتخاب کنید.</small>
+						</div>
+						<button type="submit" class="btn btn-primary px-5">ذخیره محصول</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
